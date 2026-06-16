@@ -26,7 +26,7 @@ export const SignSshKey = async ({ sshPath, publicKey, principals, token, domain
     method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
+      'Authorization': `X-Vault-Token ${token}`
     },
     body: JSON.stringify(signPayload)
   });
