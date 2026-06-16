@@ -11,9 +11,9 @@ inputs:
     description: 'Il Secret ID di AppRole'
     required: true
   sshPath:
-    description: 'Il path del ssh engine (es. ssh/sign/mio-ruolo-ssh)'
+    description: 'Il path del ssh engine (es. ssh/issue/mio-ruolo-ssh)'
     required: true
-  principals:
+  validPrincipals:
     description: 'Lista di principal separati da virgola (es. ubuntu,root)'
     required: false
   outputFile:
