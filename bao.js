@@ -39,3 +39,25 @@ export const SignSshKey = async ({ sshPath, publicKey, validPrincipals, token, d
 
   return signData.data.signed_key;
 }
+
+export const IssueSshKey = async ({ sshPath, validPrincipals, token, domain }) => {
+  const issueRes = await fetch(`${domain}/v1/${sshPath}`, {
+    method: 'GET',
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': `X-Vault-Token ${token}`
+    },
+    body: JSON.stringify({
+      key_type: 'ed25519',
+      valid_principals: validPrincipals,
+    })
+  });
+
+  if (!issueRes.ok) {
+    const errText = await issueRes.text();
+    throw new Error(`Emissione chiave SSH fallita (${issueRes.status}): ${errText}`);
+  }
+  const issueData = await issueRes.json();
+
+  return issueData.data;
+}
