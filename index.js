@@ -33,7 +33,10 @@ async function run() {
 
     fs.mkdirSync(path.dirname(privateKeyPath), { recursive: true });
     fs.writeFileSync(privateKeyPath, private_key, 'utf8');
-    fs.writeFileSync(publicKeyPath, public_key, 'utf8');
+    if (public_key) {
+      fs.writeFileSync(publicKeyPath, public_key, 'utf8');
+      core.info(`Chiave pubblica salvata in: ${publicKeyPath}`);
+    }
     fs.writeFileSync(certPath, signed_key, 'utf8');
     
     fs.chmodSync(privateKeyPath, 0o600);
