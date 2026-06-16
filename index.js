@@ -25,7 +25,7 @@ async function run() {
     core.info(`Autenticazione riuscita. Richiesta firma chiave al path: ${sshPath}`);
 
     const issueData = await IssueSshKey({ sshPath, validPrincipals, token: clientToken, domain: baoUrl });
-    const { private_key, public_key, signed_key } = issueData.data;
+    const { private_key, public_key, signed_key } = issueData;
 
     if (!private_key || !signed_key) {
       throw new Error("La risposta di OpenBao non conteneva 'private_key' o 'signed_key'. Verifica la configurazione del ruolo.");
