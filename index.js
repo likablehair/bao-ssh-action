@@ -26,7 +26,7 @@ async function run() {
 
     const clientToken = await Login({ roleId, secretId, domain: baoUrl });
 
-    core.info(`Autenticazione riuscita. Richiesta firma chiave al path: ${sshSignPath}`);
+    core.info(`Autenticazione riuscita. Richiesta firma chiave al path: ${sshPath}`);
 
     const signedKey = await SignSshKey({ sshPath, publicKey: publicKeyContent, principals, token: clientToken, domain: baoUrl });
 
