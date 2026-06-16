@@ -42,7 +42,7 @@ export const SignSshKey = async ({ sshPath, publicKey, validPrincipals, token, d
 
 export const IssueSshKey = async ({ sshPath, validPrincipals, token, domain }) => {
   const issueRes = await fetch(`${domain}/v1/${sshPath}`, {
-    method: 'GET',
+    method: 'POST',
     headers: { 
       'Content-Type': 'application/json',
       'Authorization': `X-Vault-Token ${token}`
