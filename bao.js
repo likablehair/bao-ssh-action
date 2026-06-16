@@ -16,10 +16,10 @@ export const Login = async ({ roleId, secretId, domain}) => {
     return loginData.auth.client_token;
 }
 
-export const SignSshKey = async ({ sshPath, publicKey, principals, token, domain }) => {
+export const SignSshKey = async ({ sshPath, publicKey, validPrincipals, token, domain }) => {
   const signPayload = {
     public_key: publicKey,
-    principals: principals ? principals.split(',').map(p => p.trim()) : undefined,
+    valid_principals: validPrincipals ? validPrincipals.split(',').map(p => p.trim()) : undefined,
   };
 
   const signRes = await fetch(`${domain}/v1/${sshPath}`, {

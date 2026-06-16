@@ -10,7 +10,7 @@ async function run() {
     const roleId = core.getInput('roleId', { required: true });
     const secretId = core.getInput('secretId', { required: true });
     const sshPath = core.getInput('sshPath', { required: true });
-    const principals = core.getInput('principals');
+    const validPrincipals = core.getInput('validPrincipals');
     let outputFile = core.getInput('outputFile');
 
     const workspace = process.env.GITHUB_WORKSPACE || '.';
@@ -28,7 +28,7 @@ async function run() {
 
     core.info(`Autenticazione riuscita. Richiesta firma chiave al path: ${sshPath}`);
 
-    const signedKey = await SignSshKey({ sshPath, publicKey: publicKeyContent, principals, token: clientToken, domain: baoUrl });
+    const signedKey = await SignSshKey({ sshPath, publicKey: publicKeyContent, validPrincipals, token: clientToken, domain: baoUrl });
 
     fs.writeFileSync(certPath, signedKey);
     fs.chmodSync(privateKeyPath, 0o600);
