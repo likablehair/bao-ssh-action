@@ -1,0 +1,25 @@
+name: 'OpenBao Secret Fetcher'
+description: 'Recupera i secret da OpenBao tramite AppRole e li salva in un file.'
+inputs:
+  baoUrl:
+    description: 'URL di base di OpenBao (es. https://vault.mio-dominio.com)'
+    required: true
+  roleId:
+    description: 'Il Role ID di AppRole'
+    required: true
+  secretId:
+    description: 'Il Secret ID di AppRole'
+    required: true
+  sshPath:
+    description: 'Il path del ssh engine (es. ssh/sign/mio-ruolo-ssh)'
+    required: true
+  principals:
+    description: 'Lista di principal separati da virgola (es. ubuntu,root)'
+    required: false
+  outputFile:
+    description: 'Il nome del file di output in cui salvare i secret'
+    required: false
+    default: 'id_rsa'
+runs:
+  using: 'node20'
+  main: 'index.js'
