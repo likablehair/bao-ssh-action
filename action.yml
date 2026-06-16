@@ -19,7 +19,7 @@ inputs:
   outputFile:
     description: 'Il nome del file di output in cui salvare i secret'
     required: false
-    default: 'id_rsa'
+    default: 'id_ed25519'
 runs:
   using: 'node20'
   main: 'index.js'
